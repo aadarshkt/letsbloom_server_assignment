@@ -70,5 +70,67 @@
    ```
    <img width="530" alt="Screenshot 2023-12-09 at 19 37 13" src="https://github.com/aadarshkt/letsbloom_server_assignment/assets/72285744/851b6931-c87e-40e6-b3e3-7e09f0846442">
 
+<h3>Create new book</h3>
 
+1. API end point
+   ```
+      http://localhost:8080/api/books
+   ```
+2. req.body of create book request. Go to post book file of postman workspace. Use body tab of workspace and send the below format data to create a book in the database
+   ```
+   {
+       "title": "Life 3.0",
+       "author": "Max Tegmark",
+       "year_published": "2017",
+       "ISBN" : "978-1-101-94659-6"
+   }
+   ```
+
+3. Response is returned in following format.
+   ```
+   {
+       "fieldCount": 0,
+       "affectedRows": 1,
+       "insertId": 15,
+       "info": "",
+       "serverStatus": 2,
+       "warningStatus": 0,
+       "changedRows": 0
+   }
+   ```
+5. Affected rows one means that data is successfully inserted in the database.
+6. Referesh the phpMyAdmin database link to see updated data as below.
+   <br /><br />
+   <img width="610" alt="Screenshot 2023-12-09 at 20 17 34" src="https://github.com/aadarshkt/letsbloom_server_assignment/assets/72285744/a11c43ae-334c-476e-9fb9-aa5899fd0698">
+
+<h3>Update book</h3>
+
+1. API endpoint
+   ```
+      http://localhost:8080/api/books?id=16
+   ```
+2. Go to put book file of postman workspace. Use body tab of workspace and send the below request using the send button.
+   ```
+   {
+       "title": "Life 3.0",
+       "author": "Max Erik Tegmark",
+       "year_published": "2017",
+       "ISBN" : "978-1-101-94659-6"
+   }
+   ```
+
+3. Response format.
+   ```
+   {
+       "fieldCount": 0,
+       "affectedRows": 1,
+       "insertId": 0,
+       "info": "Rows matched: 1  Changed: 1  Warnings: 0",
+       "serverStatus": 2,
+       "warningStatus": 0,
+       "changedRows": 1
+   }
+   ```
+4. If affectedRows has value 1 means book is successfully updated. 
+   
 
