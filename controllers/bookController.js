@@ -34,9 +34,11 @@ const insertBook = async (req, res) => {
 
 const updateBook = async (req, res) => {
   const bookId = req.query.id;
+  console.log("bookId", bookId);
   const { title, author, year_published, ISBN } = req.body;
   const update_query = "UPDATE books SET title = ?, author = ?, year_published = ?, ISBN = ? WHERE id = ?";
   const result = await query(update_query, [title, author, year_published, ISBN, bookId]);
+
   //handling error if updating non-existent book
   if (result.affectedRows == 0) {
     res.status(400).json({
