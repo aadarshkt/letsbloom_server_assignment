@@ -39,8 +39,20 @@
 
 # Database design
 
+1. books table has five columns. id, title, author, year_published, ISBN.
+2. id is the primary key with auto_increment property.
+   <br />
+   <br />
+   <img width="595" alt="Screenshot 2023-12-09 at 19 30 08" src="https://github.com/aadarshkt/letsbloom_server_assignment/assets/72285744/ed191283-1ed9-4a75-825a-55ba674c3974">
+
+
 # API endpoints
 
 <h3>Get all books</h3>
+
+1. Postman workspace has get all books folder, click on the send button to get all books from the database. Example response is given below.
+   <br /><br />
+   <img width="530" alt="Screenshot 2023-12-09 at 19 37 13" src="https://github.com/aadarshkt/letsbloom_server_assignment/assets/72285744/851b6931-c87e-40e6-b3e3-7e09f0846442">
+
 
 
