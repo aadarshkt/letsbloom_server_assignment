@@ -8,6 +8,7 @@ async function query(sqlquery, params) {
   });
 
   connection.connect((err) => {
+    //handling of database connection issues
     if (err) {
       console.error("Error connecting to the database: " + err.stack);
       return;
