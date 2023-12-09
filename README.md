@@ -34,6 +34,9 @@
 
 # Steps to interact with server
 
+1. Go to this link to public postman workspace. If account is not availabe create postman account. <a href="https://www.postman.com/orbital-module-astronaut-928122/workspace/library-api-development/collection/13524604-4d044bb5-888e-49a4-80f4-985ae8aa94fc?action=share&creator=13524604">Link to postman workspace</a>
+2. Use different files available in the workspace to interact with server.
+
 # Database design
 
 # API endpoints
