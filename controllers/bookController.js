@@ -7,8 +7,28 @@ const getAllbooks = async (req, res) => {
 
 const insertBook = async (req, res) => {
   const { title, author, year_published, ISBN } = req.body;
-  const insert_query = "INSERT INTO books (title, author, year_published, ISBN) VALUES (?, ?, ?, ?)";
+
+  //check for already existing values
+  const check_query = "SELECT * FROM books WHERE title = ? AND author = ? AND year_published = ? AND ISBN = ?";
+  const check_result = await query(check_query, [title, author, year_published, ISBN]);
+  if (check_result.length > 0) {
+    res.status(400).json({
+      message: "Duplicate book, Invalid request",
+    });
+    return;
+  }
+
+  const insert_query = "INSERT IGNORE INTO books (title, author, year_published, ISBN) VALUES (?, ?, ?, ?)";
   const result = await query(insert_query, [title, author, year_published, ISBN]);
+
+  //handle duplicate entry
+  //if duplicate affectedRows will be zero
+  if (result.affectedRows == 0) {
+    res.status(400).json({
+      message: "duplicate entry Bad request",
+    });
+    return;
+  }
   res.json(result);
 };
 
@@ -20,7 +40,7 @@ const updateBook = async (req, res) => {
   //handling error if updating non-existent book
   if (result.affectedRows == 0) {
     res.status(400).json({
-      message: "Invalid book ID",
+      message: "Invalid book ID, Bad request",
     });
     return;
   }
