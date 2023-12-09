@@ -18,17 +18,9 @@ const validate_year_published = () =>
   body("year_published").trim().notEmpty().escape().withMessage("year published not valid");
 const validate_ISBN = () => body("ISBN").trim().notEmpty().isISBN().withMessage("ISBN not valid");
 
-bookRouter.post(
-  "/",
-  validate_ID(),
-  validate_title(),
-  validate_author(),
-  validate_year_published(),
-  validate_ISBN(),
-  (req, res) => {
-    insertBook(req, res);
-  }
-);
+bookRouter.post("/", validate_title(), validate_author(), validate_year_published(), validate_ISBN(), (req, res) => {
+  insertBook(req, res);
+});
 
 // isDate(options?: {
 //   format?: string;
