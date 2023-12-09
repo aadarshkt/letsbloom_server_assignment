@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { createConnection } from "mysql2";
+import bookRouter from "./routes/bookRoutes.js";
 
 const app = express();
 const port = 8080;
@@ -29,8 +30,6 @@ connection.connect((err) => {
   console.log("Connected to the database as ID " + connection.threadId);
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+app.use("/api/books", bookRouter);
 
 app.listen(port, () => console.log(`Server listening on ${port}`));
