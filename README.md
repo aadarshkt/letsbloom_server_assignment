@@ -52,6 +52,22 @@
 
 1. Postman workspace has get all books folder, click on the send button to get all books from the database. Example response is given below.
    <br /><br />
+2. API endpoint.
+   ```
+   http://localhost:8080/api/books
+   ```
+3. Response is json with each book represented as JSON object containing fields of id, title, author, year_published, ISBN.
+   ```
+   [
+      {
+         "id" : 1,
+         "title" : "book's title",
+         "author" : "book's author",
+         "year_published" : "publication year",
+         "ISBN" : "10 digit international standard book number"
+      }
+   ]
+   ```
    <img width="530" alt="Screenshot 2023-12-09 at 19 37 13" src="https://github.com/aadarshkt/letsbloom_server_assignment/assets/72285744/851b6931-c87e-40e6-b3e3-7e09f0846442">
 
 
