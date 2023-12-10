@@ -14,7 +14,7 @@
    git clone https://github.com/aadarshkt/letsbloom_server_assignment.git
    cd letsbloom_server_assignment
    ```
-2. If node is not available, download it from here. https://nodejs.org/en/download/
+2. If node is not available, download it from here. https://nodejs.org/en/download/ Download git from here.https://git-scm.com/downloads
 3. Run following command to install packages.
    ```
    npm install
