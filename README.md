@@ -258,7 +258,6 @@ Other way is to use curl commands in terminal to interact with server as specifi
    }
    ```
 2. Updating non-existent book. If a request is being sent with invalid id query parameter, error response is received.
-   curl commnand
    ```
    curl -X PUT -H "Content-Type: application/json" -d '{ 
     "title": "Life 3.0",     
