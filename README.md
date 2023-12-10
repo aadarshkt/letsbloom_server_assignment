@@ -249,5 +249,29 @@ Other way is to use curl commands in terminal to interact with server as specifi
    ```
 3. Path and location field in error response represents that error has happened in req.body with field year_published.
 
+<h3>Other cases handling</h3>
+
+1. User cannot enter duplcate values. If one tries, error response is generated.
+   ```
+   {
+       "message": "Duplicate book, Invalid request"
+   }
+   ```
+2. Updating non-existent book. If a request is being sent with invalid id query parameter, error response is received.
+   ```
+   curl -X PUT -H "Content-Type: application/json" -d '{ 
+    "title": "Life 3.0",     
+    "author": "Max Erik Tegmark",      
+    "year_published": "2017",      
+    "ISBN" : "978-1-101-94659-6"      
+   }' 'http://localhost:8080/api/books?id=3000'
+   ```
+   <br />
+   ```
+   {
+       "message": "Invalid book ID, Bad request"
+   }
+   ```
+
    
 
