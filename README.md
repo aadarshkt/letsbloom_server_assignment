@@ -1,3 +1,7 @@
+# Table of contents
+
+1. [Steps to run application](#Steps-to-run-application)
+
 # Steps to run application
 
 1. Clone the project to local machine at any location using following command
