@@ -30,12 +30,14 @@
 # Steps to load mock data
 
 1. Go to this link to import database to local server. <a href="http://localhost/phpmyadmin/index.php?route=/server/import">Link to phpMyAdmin</a>
-2. Choose library_database.sql file to import mock data to local server.
+2. Choose library_database.sql file from github repository to import mock data to local server.
 
 # Steps to interact with server
 
 1. Go to this link to public postman workspace. If account is not availabe create postman account. <a href="https://www.postman.com/orbital-module-astronaut-928122/workspace/library-api-development/collection/13524604-4d044bb5-888e-49a4-80f4-985ae8aa94fc?action=share&creator=13524604">Link to postman workspace</a>
 2. Use different files available in the workspace to interact with server.
+
+Other way is to use curl commands in terminal to interact with server as specified in the API endpoint section.
 
 # Database design
 
@@ -56,7 +58,11 @@
    ```
    http://localhost:8080/api/books
    ```
-3. Response is json with each book represented as JSON object containing fields of id, title, author, year_published, ISBN.
+3. curl command
+   ```
+   curl http://localhost:8080/api/books
+   ```
+4. Response is array of json objects containing fields of id, title, author, year_published, ISBN.
    ```
    [
       {
@@ -76,6 +82,7 @@
    ```
       http://localhost:8080/api/books
    ```
+
 2. req.body of create book request. Go to post book file of postman workspace. Use body tab of workspace and send the below format data to create a book in the database
    ```
    {
@@ -85,8 +92,16 @@
        "ISBN" : "978-1-101-94659-6"
    }
    ```
-
-3. Response is returned in following format.
+3. curl command
+   ```
+   curl -X POST -H "Content-Type: application/json" -d '{
+    "title": "Life 3.0",
+    "author": "Max Tegmark",
+    "year_published": "2017",
+    "ISBN" : "978-1-101-94659-6"
+   }' http://localhost:8080/api/books
+   ```
+5. Response is returned in following format.
    ```
    {
        "fieldCount": 0,
@@ -98,8 +113,8 @@
        "changedRows": 0
    }
    ```
-5. Affected rows one means that data is successfully inserted in the database.
-6. Referesh the phpMyAdmin database link to see updated data as below.
+6. Affected rows one means that data is successfully inserted in the database.
+7. Referesh the phpMyAdmin database link to see updated data as below.
    <br /><br />
    <img width="610" alt="Screenshot 2023-12-09 at 20 17 34" src="https://github.com/aadarshkt/letsbloom_server_assignment/assets/72285744/a11c43ae-334c-476e-9fb9-aa5899fd0698">
 
@@ -109,7 +124,16 @@
    ```
       http://localhost:8080/api/books?id=16
    ```
-2. Go to put book file of postman workspace. Use body tab of workspace and send the below request using the send button.
+2. curl command
+   ```
+   curl -X PUT -H "Content-Type: application/json" -d '{
+    "title": "Life 3.0",
+    "author": "Max Erik Tegmark",
+    "year_published": "2017",
+    "ISBN" : "978-1-101-94659-6"
+   }' http://localhost:8080/api/books
+   ```
+4. Go to put book file of postman workspace. Use body tab of workspace and send the below request using the send button.
    ```
    {
        "title": "Life 3.0",
@@ -119,7 +143,7 @@
    }
    ```
 
-3. Response format.
+5. Response format.
    ```
    {
        "fieldCount": 0,
@@ -131,6 +155,6 @@
        "changedRows": 1
    }
    ```
-4. If affectedRows has value 1 means book is successfully updated. 
+6. If affectedRows has value 1 means book is successfully updated. 
    
 
