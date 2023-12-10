@@ -131,7 +131,7 @@ Other way is to use curl commands in terminal to interact with server as specifi
 
 1. API endpoint
    ```
-      http://localhost:8080/api/books?id=16
+      http://localhost:8080/api/books?id=[id_from_database]
    ```
 2. curl command
    ```
@@ -140,7 +140,7 @@ Other way is to use curl commands in terminal to interact with server as specifi
     "author": "Max Erik Tegmark",
     "year_published": "2017",
     "ISBN" : "978-1-101-94659-6"
-   }' http://localhost:8080/api/books
+   }' 'http://localhost:8080/api/books?id=[check_id_from_local_database]'
    ```
 4. Go to put book file of postman workspace. Use body tab of workspace and send the below request using the send button.
    ```
@@ -199,12 +199,12 @@ Other way is to use curl commands in terminal to interact with server as specifi
 
 1. When making a update request if the query parameter is empty, error is returned.
    ```
-   {
-       "title": "Life 3.0",
-       "author": "2018",
-       "year_published": "2017",
-       "ISBN" : "978-1-101-94659-6"
-   }
+   curl -X PUT -H "Content-Type: application/json" -d '{
+    "title": "Life 3.0",
+    "author": "Max Erik Tegmark",
+    "year_published": "2017",
+    "ISBN" : "978-1-101-94659-6"
+   }' 'http://localhost:8080/api/books?id='
    ```
 2. Error response format.
    ```
@@ -226,12 +226,12 @@ Other way is to use curl commands in terminal to interact with server as specifi
 
 1. In create or update request the year should be in range of 868 to 2023. If following request is sent.
    ```
-   {
+   curl -X POST -H "Content-Type: application/json" -d '{
       	 "title": "Life 3.0",
           "author": "Max Erik Tegmark",
           "year_published": "2024",
           "ISBN" : "978-1-101-94659-6"
-   }
+   }' http://localhost:8080/api/books
    ```
 2. Error response is returned in following format.
    ```
