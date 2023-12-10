@@ -1,6 +1,11 @@
 # Table of contents
 
 1. [Steps to run application](#Steps-to-run-application)
+2. [Steps to load mock data](#Steps-to-load-mock-data)
+3. [Steps to interact with server](#Steps-to-interact-with-server)
+4. [Database design](#Database-design)
+5. [API endpoints](#API-endpoints)
+6. [Validation](#Validation)
 
 # Steps to run application
 
@@ -159,6 +164,90 @@ Other way is to use curl commands in terminal to interact with server as specifi
        "changedRows": 1
    }
    ```
-6. If affectedRows has value 1 means book is successfully updated. 
+6. If affectedRows has value 1 means book is successfully updated.
+
+# Validation
+
+<h3>Empty field validation</h3>
+
+1. When making a create or update request if any of the fields is empty, server will return 400 bad request response as follows. In following request author is empty.
+   ```
+   curl -X PUT -H "Content-Type: application/json" -d '{
+    "title": "Life 3.0",
+    "author": "",                
+    "year_published": "2017",
+    "ISBN" : "978-1-101-94659-6"
+   }' http://localhost:8080/api/books
+   ```
+2. Response is in following format
+   ```
+   {
+       "errors": [
+           {
+               "type": "field",
+               "value": "",
+               "msg": "author not valid",
+               "path": "author",
+               "location": "body"
+           }
+       ]
+   }
+   ```
+3. Location of error is req.body and path represents the value that is empty.
+
+<h3>Empty query parameter validation</h3>
+
+1. When making a update request if the query parameter is empty, error is returned.
+   ```
+   {
+       "title": "Life 3.0",
+       "author": "2018",
+       "year_published": "2017",
+       "ISBN" : "978-1-101-94659-6"
+   }
+   ```
+2. Error response format.
+   ```
+   {
+       "errors": [
+           {
+               "type": "field",
+               "value": "",
+               "msg": "Id not valid",
+               "path": "id",
+               "location": "query"
+           }
+       ]
+   }
+   ```
+3. location value represents that req.query is empty.
+
+<h3>Year validation</h3>
+
+1. In create or update request the year should be in range of 868 to 2023. If following request is sent.
+   ```
+   {
+      	 "title": "Life 3.0",
+          "author": "Max Erik Tegmark",
+          "year_published": "2024",
+          "ISBN" : "978-1-101-94659-6"
+   }
+   ```
+2. Error response is returned in following format.
+   ```
+   {
+       "errors": [
+           {
+               "type": "field",
+               "value": "2024",
+               "msg": "Year range is wrong",
+               "path": "year_published",
+               "location": "body"
+           }
+       ]
+   }
+   ```
+3. Path and location field in error response represents that error has happened in req.body with field year_published.
+
    
 
