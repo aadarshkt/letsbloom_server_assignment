@@ -14,17 +14,18 @@
    git clone https://github.com/aadarshkt/letsbloom_server_assignment.git
    cd letsbloom_server_assignment
    ```
-2. If node is not available, download it from here. https://nodejs.org/en/download/
+2. If node is not available, download it from here. https://nodejs.org/en/download/ Download git from here.https://git-scm.com/downloads
 3. Run following command to install packages.
    ```
    npm install
    ```
 4. Download XAMPP server to host local mySQL database from here. https://www.apachefriends.org/download.html
-5. Start the mySQL and apache web server.
+5. Start the mySQL and apache web server. If on windows run it with administrator priviledge. On windows go to programs and click run as administrator. 
    <br />
    <br />
    <img width="336" alt="Screenshot 2023-12-09 at 18 21 37" src="https://github.com/aadarshkt/letsbloom_server_assignment/assets/72285744/323a23d8-2cb4-47a1-b91b-8c5d2d4a8972">
-   
+   <img widht="100" alt="windows xampp view" src="https://github.com/aadarshkt/letsbloom_server_assignment/assets/72285744/d2dea690-16fc-4e65-8808-95612fa9a36e">
+
 6. To start the server on localhost, use following command
    ```
    npm start
