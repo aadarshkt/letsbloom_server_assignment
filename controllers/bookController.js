@@ -46,7 +46,22 @@ const updateBook = async (req, res) => {
     });
     return;
   }
-  res.json(result);
+  return res.json(result);
 };
 
-export { getAllbooks, insertBook, updateBook };
+const deleteBook = async (req, res) => {
+  const bookId = req.query.id;
+  const delete_query = "DELETE FROM books WHERE id = ?";
+  const result = await query(delete_query, [bookId]);
+
+  if (result.affectedRows == 0) {
+    res.status(400).json({
+      message: "Invalid book ID, Bad request",
+    });
+    return;
+  }
+
+  return res.json({ message: `Deleted book with id ${bookId}` });
+};
+
+export { getAllbooks, insertBook, updateBook, deleteBook };
