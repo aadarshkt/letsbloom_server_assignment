@@ -1,7 +1,7 @@
 {
-  "name": "letsbloom_server_assignment",
+  "name": "library_server",
   "version": "1.0.0",
-  "description": "assignment for letsbloom test",
+  "description": "server for library",
   "main": "index.js",
   "type": "module",
   "scripts": {
