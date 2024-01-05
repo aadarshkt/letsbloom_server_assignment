@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { createConnection } from "mysql2";
+import { Pool } from "pg";
 import bookRouter from "./routes/bookRoutes.js";
 
 const app = express();
@@ -15,19 +15,23 @@ app.use(
 );
 
 //create database connection
-const connection = createConnection({
-  host: "localhost",
-  user: "root",
-  database: "library_database",
+require("dotenv").config();
+const pool = new Pool({
+  user: process.env.USER,
+  host: process.env.HOST,
+  database: process.env.NAME,
+  password: process.env.PASSWORD,
+  port: process.env.PORT, // PostgreSQL default port is usually 5432
 });
 
-// Connect to the MySQL server
-connection.connect((err) => {
-  if (err) {
-    console.error("Error connecting to the database: " + err.stack);
-    return;
-  }
-  console.log("Connected to the database as ID " + connection.threadId);
+// Handling connection success
+pool.on("connect", () => {
+  console.log("Connected to PostgreSQL database");
+});
+
+// Handling connection errors
+pool.on("error", (err) => {
+  console.error("Error connecting to PostgreSQL database:", err);
 });
 
 app.use("/api/books", bookRouter);

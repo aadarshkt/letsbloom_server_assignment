@@ -13,6 +13,7 @@ const pool = new Pool({
 async function query(sqlquery, params) {
   try {
     const [results] = await pool.execute(sqlquery, params);
+    pool.end();
     return results;
   } catch (error) {
     throw new Error("error executing query " + error);
