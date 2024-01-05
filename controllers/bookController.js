@@ -44,6 +44,7 @@ const updateBook = async (req, res) => {
     res.status(400).json({
       message: "Invalid book ID, Bad request",
     });
+
     return;
   }
   return res.json(result);
