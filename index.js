@@ -1,7 +1,9 @@
 import express from "express";
 import cors from "cors";
-import { Pool } from "pg";
+import pkg from "pg";
+const { Pool } = pkg;
 import bookRouter from "./routes/bookRoutes.js";
+import { configDotenv } from "dotenv";
 
 const app = express();
 const port = 8080;
@@ -15,7 +17,6 @@ app.use(
 );
 
 //create database connection
-require("dotenv").config();
 const pool = new Pool({
   user: process.env.USER,
   host: process.env.HOST,

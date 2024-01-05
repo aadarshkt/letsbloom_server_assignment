@@ -1,6 +1,6 @@
-import mysql from "mysql2/promise";
-import { Pool } from "pg";
-require("dotenv").config();
+import pkg from "pg";
+const { Pool } = pkg;
+import { configDotenv } from "dotenv";
 
 const pool = new Pool({
   user: process.env.USER,
