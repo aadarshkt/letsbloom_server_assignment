@@ -1,23 +1,18 @@
 import mysql from "mysql2/promise";
+import { Pool } from "pg";
+require("dotenv").config();
+
+const pool = new Pool({
+  user: process.env.USER,
+  host: process.env.HOST,
+  database: process.env.NAME,
+  password: process.env.PASSWORD,
+  port: process.env.PORT, // PostgreSQL default port is usually 5432
+});
 
 async function query(sqlquery, params) {
-  const connection = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    database: "library_database",
-  });
-
-  connection.connect((err) => {
-    //handling of database connection issues
-    if (err) {
-      console.error("Error connecting to the database: " + err.stack);
-      return;
-    }
-    console.log("Connected to the database as ID " + connection.threadId);
-  });
-
   try {
-    const [results] = await connection.execute(sqlquery, params);
+    const [results] = await pool.execute(sqlquery, params);
     return results;
   } catch (error) {
     throw new Error("error executing query " + error);
