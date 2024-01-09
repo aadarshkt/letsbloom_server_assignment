@@ -1,7 +1,7 @@
 import pkg from "pg";
 const { Pool } = pkg;
-import { configDotenv } from "dotenv";
-import { param } from "express-validator";
+import dotenv from "dotenv";
+dotenv.config();
 
 // //local db_config
 // const db_config = {
@@ -18,6 +18,7 @@ const db_config = {
   database: process.env.NAME,
   password: process.env.PASSWORD,
   port: process.env.PORT,
+  ssl: true,
 };
 
 async function query(sqlquery, params) {
