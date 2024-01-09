@@ -17,7 +17,7 @@ const db_config = {
   host: process.env.HOST,
   database: process.env.NAME,
   password: process.env.PASSWORD,
-  port: process.env.PORT,
+  port: process.env.DB_PORT,
   ssl: true,
 };
 

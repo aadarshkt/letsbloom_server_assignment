@@ -4,7 +4,7 @@ import bookRouter from "./routes/bookRoutes.js";
 import { configDotenv } from "dotenv";
 
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 app.use(cors());
 app.use(express.json());
